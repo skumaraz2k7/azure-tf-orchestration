@@ -1,9 +1,9 @@
 name: Simple GitHub Action
 
 on:
-  push:
-    branches:
-      - main
+  repository_dispatch:
+    types:
+      - manual-trigger
 
 jobs:
   echo-job:
