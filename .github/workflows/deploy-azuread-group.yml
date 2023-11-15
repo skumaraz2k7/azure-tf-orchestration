@@ -10,7 +10,7 @@ env:
   ARM_CLIENT_SECRET: ${{ secrets.ARM_CLIENT_SECRET }}
   ARM_SUBSCRIPTION_ID: ${{ secrets.ARM_SUBSCRIPTION_ID }}
   ARM_TENANT_ID: ${{ secrets.ARM_TENANT_ID }}
-  TERRAFORM_FOLDER: 'azuread_group_deploy' # Set your Terraform folder name here
+  TERRAFORM_FOLDER: 'azure_ad_deploy' # Set your Terraform folder name here
 
 jobs:
   deploy:
