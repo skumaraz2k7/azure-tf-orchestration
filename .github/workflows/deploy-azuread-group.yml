@@ -32,6 +32,14 @@ jobs:
       - name: Terraform Plan
         run: terraform plan -out=tfplan
         working-directory: ${{ env.TERRAFORM_FOLDER }}
+      
+      - name: Manual Approval
+        id: approve
+        run: echo "Manually approve by commenting 'approve' on the pull request or workflow run"
+
+      - name: Check Approval Status
+        id: check_approval
+        run: echo "Approval status is ${{ needs.approve.outputs.result }}"
 
       - name: Terraform Apply
         run: terraform apply -auto-approve
