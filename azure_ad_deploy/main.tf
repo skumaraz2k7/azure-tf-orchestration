@@ -6,6 +6,6 @@ data "azuread_client_config" "current" {}
 
 resource "azuread_group" "adgrp" {
   display_name     = "example"
-  owners           = [data.azuread_client_config.current.object_id]
+  owners           = ["639187ae-2398-48a7-bd84-e8e361391650"]
   security_enabled = true  
 }
