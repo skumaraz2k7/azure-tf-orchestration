@@ -3,7 +3,7 @@ name: Deploy Azure AD Group
 on:
   push:
     branches:
-      - main
+      - master
 
 env:
   ARM_CLIENT_ID: ${{ secrets.ARM_CLIENT_ID }}
