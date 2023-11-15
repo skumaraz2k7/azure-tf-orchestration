@@ -37,6 +37,3 @@ jobs:
         run: terraform apply -auto-approve
         working-directory: ${{ env.TERRAFORM_FOLDER }}
 
-      - name: Terraform Destroy (optional)
-        run: terraform destroy -auto-approve
-        working-directory: ${{ env.TERRAFORM_FOLDER }}
