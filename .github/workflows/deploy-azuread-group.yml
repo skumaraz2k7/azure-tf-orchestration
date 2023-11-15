@@ -26,7 +26,7 @@ jobs:
           terraform_version: 1.0.0
 
       - name: Terraform Init
-        run: terraform init ./${{ env.TERRAFORM_FOLDER }}
+        run: terraform init ./azuread_group_deploy
 
       - name: Terraform Plan
         run: terraform plan -out=tfplan ./${{ env.TERRAFORM_FOLDER }}
