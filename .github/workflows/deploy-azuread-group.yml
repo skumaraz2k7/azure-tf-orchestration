@@ -21,18 +21,22 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Setup Terraform
-        uses: hashicorp/setup-terraform@v1
+        uses: hashicorp/setup-terraform@v1        
         with:
           terraform_version: 1.0.0
 
       - name: Terraform Init
-        run: terraform init ./azuread_group_deploy
+        run: terraform init
+        working-directory: ${{ env.TERRAFORM_FOLDER }}
 
       - name: Terraform Plan
-        run: terraform plan -out=tfplan ./${{ env.TERRAFORM_FOLDER }}
+        run: terraform plan -out=tfplan
+        working-directory: ${{ env.TERRAFORM_FOLDER }}
 
       - name: Terraform Apply
-        run: terraform apply -auto-approve tfplan ./${{ env.TERRAFORM_FOLDER }}
+        run: terraform apply -auto-approve
+        working-directory: ${{ env.TERRAFORM_FOLDER }}
 
       - name: Terraform Destroy (optional)
-        run: terraform destroy -auto-approve ./${{ env.TERRAFORM_FOLDER }}
+        run: terraform destroy -auto-approve
+        working-directory: ${{ env.TERRAFORM_FOLDER }}
