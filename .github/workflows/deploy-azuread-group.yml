@@ -1,0 +1,38 @@
+name: Deploy Azure AD Group
+
+on:
+  push:
+    branches:
+      - main
+
+env:
+  ARM_CLIENT_ID: ${{ secrets.ARM_CLIENT_ID }}
+  ARM_CLIENT_SECRET: ${{ secrets.ARM_CLIENT_SECRET }}
+  ARM_SUBSCRIPTION_ID: ${{ secrets.ARM_SUBSCRIPTION_ID }}
+  ARM_TENANT_ID: ${{ secrets.ARM_TENANT_ID }}
+  TERRAFORM_FOLDER: 'azuread_group_deploy' # Set your Terraform folder name here
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v1
+        with:
+          terraform_version: 1.0.0
+
+      - name: Terraform Init
+        run: terraform init ./${{ env.TERRAFORM_FOLDER }}
+
+      - name: Terraform Plan
+        run: terraform plan -out=tfplan ./${{ env.TERRAFORM_FOLDER }}
+
+      - name: Terraform Apply
+        run: terraform apply -auto-approve tfplan ./${{ env.TERRAFORM_FOLDER }}
+
+      - name: Terraform Destroy (optional)
+        run: terraform destroy -auto-approve ./${{ env.TERRAFORM_FOLDER }}
